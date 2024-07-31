@@ -1,5 +1,5 @@
 name: microceph
-base: core22
+base: core24
 adopt-info: ceph
 grade: stable
 source-code: https://github.com/canonical/microceph.git
@@ -12,7 +12,7 @@ confinement: strict
 
 package-repositories:
   - type: apt
-    cloud: bobcat
+    ppa: medvied/noble-ceph-squid-qat
     priority: always
 
 slots:
@@ -150,7 +150,7 @@ parts:
           --always \
           --dirty \
           --abbrev=10)
-        craftctl set version=${pkg_version}+snap${git_version}
+        craftctl set version=${pkg_version:0:10}+snap${git_version}
     stage-packages:
       - ceph-common
       - ceph-mds
@@ -161,6 +161,8 @@ parts:
       - radosgw
       - coreutils
       - uuid-runtime
+      - libldap2
+      - libssh-4
     organize:
       usr/bin/: bin/
       usr/sbin/: bin/
@@ -189,8 +191,9 @@ parts:
       - lib/*/libboost_filesystem.so*
       - lib/*/libboost_iostreams.so*
       - lib/*/libboost_program_options.so*
-      - lib/*/libboost_python310.so*
+      - lib/*/libboost_python312.so*
       - lib/*/libboost_thread.so*
+      - lib/*/libboost_url.so*
       - lib/*/libcephfs.so*
       - lib/*/libcephsqlite.so*
       - lib/*/libcurl-gnutls.so*
@@ -200,7 +203,10 @@ parts:
       - lib/*/libicudata.so*
       - lib/*/libicuuc.so*
       - lib/*/liblber-2.5.so*
+      - lib/*/liblber.so.2*
       - lib/*/libldap-2.5.so*
+      - lib/*/libldap.so.2*
+      - lib/*/liblmdb.so.0*
       - lib/*/liblua5.4.so*
       - lib/*/libndctl.so*
       - lib/*/libnghttp2.so*
@@ -209,7 +215,7 @@ parts:
       - lib/*/libpmem.so*
       - lib/*/libpmemobj.so*
       - lib/*/libpsl.so*
-      - lib/*/libpython3.10.so*
+      - lib/*/libpython3.12.so*
       - lib/*/librabbitmq.so*
       - lib/*/librados.so*
       - lib/*/libradosgw.so*
@@ -220,6 +226,8 @@ parts:
       - lib/*/librtmp.so*
       - lib/*/libsasl2.so*
       - lib/*/libsnappy.so*
+      - lib/*/libssh.so.4*
+      - lib/*/libncurses.so*
       - lib/*/libwind.so*
       - lib/python3
       - lib/*/rados-classes
