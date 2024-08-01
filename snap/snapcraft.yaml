@@ -163,6 +163,7 @@ parts:
       - uuid-runtime
       - libldap2
       - libssh-4
+      - libqatzip3
     organize:
       usr/bin/: bin/
       usr/sbin/: bin/
@@ -233,6 +234,10 @@ parts:
       - lib/*/rados-classes
       - lib/*/libtcmalloc.so*
       - lib/*/libunwind.so*
+      - lib/*/libceph_crypto_qat.so*
+      - lib/*/libqatzip.so*
+      - lib/*/libqat.so*
+      - lib/*/libusdm.so*
       - share/ceph
 
   dqlite:
