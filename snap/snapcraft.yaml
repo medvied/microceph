@@ -164,6 +164,9 @@ parts:
       - libldap2
       - libssh-4
       - libqatzip3
+      - qatengine
+      - libcrypto-mb11
+      - libipsec-mb1
     organize:
       usr/bin/: bin/
       usr/sbin/: bin/
@@ -239,7 +242,9 @@ parts:
       - lib/*/libqat.so*
       - lib/*/libusdm.so*
       - share/ceph
-
+      - lib/*/engines-3/qatengine.so*
+      - lib/*/libcrypto_mb.so.11*
+      - lib/*/libIPSec_MB.so.1*
   dqlite:
     after:
       - raft
